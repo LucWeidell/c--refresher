@@ -14,7 +14,63 @@ namespace csharp_day_1
         // access modifier, return type, name, parameter
         static void Main(string[] args)
         {
-            // REVIEW Console.WriteLine (cs + tab) === console.log
+            Console.Clear();
+            Shelter myShelter = new Shelter();
+            myShelter.AddPet(new Cat("Garfield", 5));
+            myShelter.AddPet(new Dog("Fido"));
+            myShelter.AddPet(new Cat("Felix", 5));
+            myShelter.AddPet(new Dog("Spot"));
+            myShelter.AddPet(new Cat("Tom", 5));
+            myShelter.AddPet(new Dog("Clifford"));
+
+            bool adopting = true;
+            while(adopting)
+            {
+            System.Console.WriteLine("Cats: ");
+            System.Console.WriteLine("\n");
+            for (int i = 0; i < myShelter.Cats.Count; i++)
+            {
+                Cat c = myShelter.Cats[i];
+                System.Console.WriteLine(c.Name);
+            }
+            System.Console.WriteLine("Dogs: ");
+            System.Console.WriteLine("\n");
+            for (int i = 0; i < myShelter.Dogs.Count; i++)
+            {
+                Dog d = myShelter.Dogs[i];
+                System.Console.WriteLine(d.Name);
+            }
+
+
+                System.Console.WriteLine("\nWhat type of animal fdo you wish to adopt? (cat or dog)");
+                string type = Console.ReadLine().ToLower();
+                System.Console.WriteLine("Which one?");
+                string name = Console.ReadLine().ToLower();
+                if(type == "cat"){
+                    Cat c = myShelter.Cats.Find(c => c.Name.ToLower() == name);
+                    if ( c == null)
+                    {
+                        System.Console.WriteLine("Sorry we dont have a Cat by that name");
+                    }
+                    else
+                    {
+                        System.Console.WriteLine(myShelter.Adopt(c));
+                        System.Console.WriteLine("Would you like to adopt another? (y/n)");
+                        var choice  = Console.ReadKey().KeyChar;
+                        if(choice == 'n')
+                        {
+                            adopting  = false;
+                        }
+                        else {
+                            continue;
+                        }
+                    }
+                }
+            }
+        }
+
+            private static void starterCode() {
+// REVIEW Console.WriteLine (cs + tab) === console.log
             Console.WriteLine("Hello World!");
 
             // SECTION variables
@@ -162,6 +218,8 @@ namespace csharp_day_1
 
 
 
+
+            }
+
         }
     }
-}
